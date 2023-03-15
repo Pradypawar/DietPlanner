@@ -1,5 +1,7 @@
 package com.example.dietplanner.models;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 
 public class UserInfoModel implements Serializable {
@@ -8,11 +10,13 @@ public class UserInfoModel implements Serializable {
     private double weightInKg;
     private double heightInFt;
     private int age;
-    private String activityLevel;
+    private int activityLevel;
     private String gender;
+    private int caloriesToMaintain;
 
 
-    public UserInfoModel (String name, double weightInKg, double heightInFt, int age, String activityLevel, String gender) {
+
+    public UserInfoModel (String name, double weightInKg, double heightInFt, int age, int activityLevel, String gender) {
         this.name = name;
         this.weightInKg = weightInKg;
         this.heightInFt = heightInFt;
@@ -25,6 +29,9 @@ public class UserInfoModel implements Serializable {
 
     }
 
+    public int getCaloriesToMaintain () {
+        return caloriesToMaintain;
+    }
     public int getId () {
         return id;
     }
@@ -61,15 +68,19 @@ public class UserInfoModel implements Serializable {
         return age;
     }
 
+    public void setCaloriesToMaintain (int caloriesToMaintain) {
+        this.caloriesToMaintain = caloriesToMaintain;
+    }
+
     public void setAge (int age) {
         this.age = age;
     }
 
-    public String getActivityLevel () {
+    public int getActivityLevel () {
         return activityLevel;
     }
 
-    public void setActivityLevel (String activityLevel) {
+    public void setActivityLevel (int activityLevel) {
         this.activityLevel = activityLevel;
     }
 
@@ -80,4 +91,6 @@ public class UserInfoModel implements Serializable {
     public void setGender (String gender) {
         this.gender = gender;
     }
+
+
 }

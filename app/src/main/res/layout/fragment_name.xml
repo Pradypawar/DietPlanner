@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:text="Hey there!"
         android:fontFamily="@font/montserrat_italic"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="150dp"
         android:textSize="30sp"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,7 +30,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/hey_there" />
-
     <TextView
         android:id="@+id/what_is_your_name"
         android:layout_width="wrap_content"
@@ -43,7 +42,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/random" />
-
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/onboarding_et_name"
         android:layout_width="match_parent"

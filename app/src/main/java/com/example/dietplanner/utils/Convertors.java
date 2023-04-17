@@ -1,7 +1,5 @@
 package com.example.dietplanner.utils;
 
-import android.util.Log;
-
 import com.example.dietplanner.models.UserInfoModel;
 
 public class Convertors {
@@ -16,9 +14,9 @@ public class Convertors {
           //weight in KG
           // height in CM
           if (userInfoModel.getGender().equals("Male")){
-               return Math.toIntExact(Math.round(10 * userInfoModel.getWeightInKg() + 6.25 * (userInfoModel.getHeightInFt()) - 5 * userInfoModel.getAge() + 5));
+               return Math.toIntExact(Math.round(10 * userInfoModel.getWeightInKg() + 6.25 * (userInfoModel.getHeightInCM()) - 5 * userInfoModel.getAge() + 5));
           }
-          return Math.toIntExact(Math.round(10 * userInfoModel.getWeightInKg() + 6.25 * (userInfoModel.getHeightInFt()) - 5 * userInfoModel.getAge() - 161));
+          return Math.toIntExact(Math.round(10 * userInfoModel.getWeightInKg() + 6.25 * (userInfoModel.getHeightInCM()) - 5 * userInfoModel.getAge() - 161));
 
      }
 //   Harris Benedict Formula

@@ -3,6 +3,7 @@ package com.example.dietplanner.models;
 public class FoodItemModel {
     String name;
     String calories;
+
     String quantity;
 
     public FoodItemModel (String name, String calories, String quantity) {

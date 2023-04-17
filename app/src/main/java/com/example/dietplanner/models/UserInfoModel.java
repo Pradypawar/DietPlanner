@@ -1,36 +1,96 @@
 package com.example.dietplanner.models;
 
-import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
+@Entity(tableName = "user")
 public class UserInfoModel implements Serializable {
+
+    @PrimaryKey(autoGenerate = true)
     private int id;
+    @ColumnInfo(name = "name")
     private String name;
+    @ColumnInfo(name = "weightinkg")
     private double weightInKg;
-    private double heightInFt;
+    @ColumnInfo(name = "heightincm")
+    private double heightInCM;
+    @ColumnInfo(name = "age")
     private int age;
+    @ColumnInfo(name = "activitylevel")
     private int activityLevel;
+    @ColumnInfo(name = "gender")
     private String gender;
-    private int caloriesToMaintain;
+    @ColumnInfo(name = "maintaincalories")
+    private int maintainCalories;
+    @ColumnInfo(name = "goal")
+    private int goal=0;
+    @ColumnInfo(name = "goalweight")
+    private int goalWeight;
 
 
-
-    public UserInfoModel (String name, double weightInKg, double heightInFt, int age, int activityLevel, String gender) {
+    public UserInfoModel (int id, String name, double weightInKg, double heightInCM, int age, int activityLevel, String gender, int maintainCalories, int goal, int goalWeight) {
+        this.id = id;
         this.name = name;
         this.weightInKg = weightInKg;
-        this.heightInFt = heightInFt;
+        this.heightInCM = heightInCM;
         this.age = age;
         this.activityLevel = activityLevel;
         this.gender = gender;
+        this.maintainCalories = maintainCalories;
+        this.goal = goal;
+        this.goalWeight = goalWeight;
+    }
+
+    @Ignore
+    public UserInfoModel (String name, double weightInKg, double heightInCM, int age, int activityLevel, String gender, int maintainCalories, int goal, int goalWeight) {
+
+        this.name = name;
+        this.weightInKg = weightInKg;
+        this.heightInCM = heightInCM;
+        this.age = age;
+        this.activityLevel = activityLevel;
+        this.gender = gender;
+        this.maintainCalories = maintainCalories;
+        this.goal = goal;
+        this.goalWeight = goalWeight;
+    }
+
+    @Ignore
+    public UserInfoModel (String name, double weightInKg, double heightInCM, int age, int activityLevel, String gender) {
+        this.name = name;
+        this.weightInKg = weightInKg;
+        this.heightInCM = heightInCM;
+        this.age = age;
+        this.activityLevel = activityLevel;
+        this.gender = gender;
+    }
+
+    public int getGoal () {
+        return goal;
+    }
+
+    public void setGoal (int goal) {
+        this.goal = goal;
+    }
+
+    public int getGoalWeight () {
+        return goalWeight;
+    }
+
+    public void setGoalWeight (int goalWeight) {
+        this.goalWeight = goalWeight;
     }
 
     public UserInfoModel () {
 
     }
 
-    public int getCaloriesToMaintain () {
-        return caloriesToMaintain;
+    public int getMaintainCalories () {
+        return maintainCalories;
     }
     public int getId () {
         return id;
@@ -56,20 +116,20 @@ public class UserInfoModel implements Serializable {
         this.weightInKg = weightInKg;
     }
 
-    public double getHeightInFt () {
-        return heightInFt;
+    public double getHeightInCM () {
+        return heightInCM;
     }
 
-    public void setHeightInFt (double heightInFt) {
-        this.heightInFt = heightInFt;
+    public void setHeightInCM (double heightInCM) {
+        this.heightInCM = heightInCM;
     }
 
     public int getAge () {
         return age;
     }
 
-    public void setCaloriesToMaintain (int caloriesToMaintain) {
-        this.caloriesToMaintain = caloriesToMaintain;
+    public void setMaintainCalories (int maintainCalories) {
+        this.maintainCalories = maintainCalories;
     }
 
     public void setAge (int age) {

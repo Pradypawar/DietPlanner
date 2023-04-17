@@ -4,8 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.renderscript.ScriptGroup;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,7 +15,6 @@ import com.example.dietplanner.databinding.ActivityUserInfoBinding;
 import com.example.dietplanner.models.UserInfoModel;
 import com.example.dietplanner.utils.Convertors;
 import com.example.dietplanner.utils.InputValidator;
-import com.google.android.material.button.MaterialButton;
 
 public class UserInfoActivity extends AppCompatActivity {
 
@@ -42,6 +39,7 @@ public class UserInfoActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+        binding.include.imageBtnCustomToolbar.setVisibility(View.INVISIBLE);
 
         genderAdapter = new ArrayAdapter<>(this,R.layout.option_row,genderList);
         binding.etGenderAutoComplete.setAdapter(genderAdapter);
@@ -97,7 +95,7 @@ public class UserInfoActivity extends AppCompatActivity {
                 user = new UserInfoModel();
                 setUser(user,binding);
                caloriesToMaintain = Convertors.caloriesToMaintain(user);
-               user.setCaloriesToMaintain(caloriesToMaintain);
+               user.setMaintainCalories(caloriesToMaintain);
                 //Toast.makeText(UserInfoActivity.this, " "+ user.getCaloriesToMaintain(), Toast.LENGTH_SHORT).show();
                // Toast.makeText(UserInfoActivity.this, Convertors.caloriesToMaintain(user).toString() +" "+user.getGender(), Toast.LENGTH_SHORT).show();
 
@@ -122,7 +120,7 @@ public class UserInfoActivity extends AppCompatActivity {
 
     public void setUser(UserInfoModel user, ActivityUserInfoBinding binding){
         user.setWeightInKg(Double.parseDouble(binding.etWeightKG.getText().toString()));
-        user.setHeightInFt(Double.parseDouble(binding.etHeightCM.getText().toString()));
+        user.setHeightInCM(Double.parseDouble(binding.etHeightCM.getText().toString()));
         user.setAge(Integer.parseInt(binding.etAge.getText().toString()));
         user.setGender(gender);
         user.setActivityLevel(activityLevel);

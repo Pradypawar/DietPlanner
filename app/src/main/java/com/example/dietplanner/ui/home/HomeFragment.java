@@ -37,7 +37,7 @@ public class HomeFragment extends Fragment {
 
        Intent i = getActivity().getIntent();
        UserInfoModel userInfoModel = (UserInfoModel) i.getSerializableExtra("userInfo");
-        binding.tvdailyCalories.setText((String.valueOf(userInfoModel.getCaloriesToMaintain())));
+        binding.tvdailyCalories.setText((String.valueOf(userInfoModel.getMaintainCalories())));
         return root;
     }
 
@@ -57,11 +57,14 @@ public class HomeFragment extends Fragment {
 
     }
     private void setFoodItems(){
-      for (int i=0;i<2;i++){
-          todaysDiet.add(new FoodItemModel("Milk","200","1 L"));
-          todaysDiet.add(new FoodItemModel("Chicken","600","200g"));
-          todaysDiet.add(new FoodItemModel("Paneer","430","100g"));
-          todaysDiet.add(new FoodItemModel("Rice","600","200g"));
-      }
+
+          todaysDiet.add(new FoodItemModel("Milk","155","1 L"));
+          todaysDiet.add(new FoodItemModel("Chicken","478","200g"));
+          todaysDiet.add(new FoodItemModel("Paneer","296","100g"));
+          todaysDiet.add(new FoodItemModel("Rice","260","200g"));
+          todaysDiet.add(new FoodItemModel("Brown Bread","313","100g"));
+          todaysDiet.add(new FoodItemModel("Cheese","402","100g"));
+          todaysDiet.add(new FoodItemModel("Banana","180","2"));
+
     }
 }

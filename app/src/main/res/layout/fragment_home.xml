@@ -16,10 +16,10 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintHorizontal_bias="0.039"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.215" />
+        app:layout_constraintVertical_bias="0.088" />
 
     <TextView
 
@@ -31,10 +31,10 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.701"
+        app:layout_constraintHorizontal_bias="0.673"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.213" />
+        app:layout_constraintTop_toTopOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/tvdaily_calories"
@@ -45,15 +45,15 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintHorizontal_bias="0.135"
         app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.213" />
+        app:layout_constraintTop_toTopOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.card.MaterialCardView
 
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="12dp"
         android:backgroundTint="#FFFFFF"
         android:outlineAmbientShadowColor="@color/black"
@@ -64,7 +64,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView">
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:layout_marginTop="8dp">
     <com.google.android.material.card.MaterialCardView
@@ -90,7 +90,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:text="Food"
                 android:textSize="18dp" />
 
@@ -102,7 +102,7 @@
                 android:gravity="center"
                 android:text="Calories"
                 android:textSize="18dp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/white"/>
 
             <TextView
                 android:id="@+id/tv_food_quantity"
@@ -112,11 +112,12 @@
                 android:gravity="center"
                 android:text="Qty"
                 android:textSize="18dp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/white"/>
         </LinearLayout>
 
 
     </com.google.android.material.card.MaterialCardView>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_todays_diet"
         android:layout_width="match_parent"

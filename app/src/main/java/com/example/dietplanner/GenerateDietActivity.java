@@ -3,8 +3,6 @@ package com.example.dietplanner;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 
@@ -26,7 +24,7 @@ public class GenerateDietActivity extends AppCompatActivity {
         Intent intent = getIntent();
         UserInfoModel user = (UserInfoModel)intent.getSerializableExtra("userInfo");
 
-        binding.generateCalories.setText(String.valueOf(user.getCaloriesToMaintain()));
+        binding.generateCalories.setText(String.valueOf(user.getMaintainCalories()));
 
         binding.buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override

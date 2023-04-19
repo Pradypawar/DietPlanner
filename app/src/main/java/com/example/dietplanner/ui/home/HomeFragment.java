@@ -1,10 +1,12 @@
 package com.example.dietplanner.ui.home;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -12,18 +14,27 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.dietplanner.MainActivity;
 import com.example.dietplanner.R;
 import com.example.dietplanner.adapters.FoodListRecyclerViewAdapter;
 import com.example.dietplanner.databinding.FragmentHomeBinding;
 import com.example.dietplanner.models.FoodItemModel;
 import com.example.dietplanner.models.UserInfoModel;
+import com.example.dietplanner.ui.loginregister.LoginActivity;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
-    ArrayList<FoodItemModel> todaysDiet = new ArrayList<>();
+
+    GoogleSignInOptions googleSignInOptions;
+    GoogleSignInClient googleSignInClient;
 
     public View onCreateView (@NonNull LayoutInflater inflater,
                               ViewGroup container, Bundle savedInstanceState) {
@@ -33,12 +44,34 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        googleSignInClient = GoogleSignIn.getClient(requireContext(),googleSignInOptions);
+
         setRecyclerView(root);
 
-       Intent i = getActivity().getIntent();
-       UserInfoModel userInfoModel = (UserInfoModel) i.getSerializableExtra("userInfo");
-        binding.tvdailyCalories.setText((String.valueOf(userInfoModel.getMaintainCalories())));
+        binding.btnHomeFragmentSignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View view) {
+                signout();
+            }
+        });
+
+
+//       Intent i = getActivity().getIntent();
+//       UserInfoModel userInfoModel = (UserInfoModel) i.getSerializableExtra("userInfo");
+//        binding.tvdailyCalories.setText((String.valueOf(userInfoModel.getMaintainCalories())));
         return root;
+    }
+
+    private void signout () {
+
+        googleSignInClient.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete (@NonNull Task<Void> task) {
+
+                startActivity(new Intent((Activity)getActivity(), LoginActivity.class));
+            }
+        });
     }
 
     @Override
@@ -49,14 +82,14 @@ public class HomeFragment extends Fragment {
 
     private void setRecyclerView(View root){
         RecyclerView recyclerView = root.findViewById(R.id.recycler_view_todays_diet);
-
-        setFoodItems();
+        ArrayList<FoodItemModel> todaysDiet = new ArrayList<>();
+        setFoodItems(todaysDiet);
         FoodListRecyclerViewAdapter foodListRecyclerViewAdapter = new FoodListRecyclerViewAdapter(getActivity(),todaysDiet);
         recyclerView.setAdapter(foodListRecyclerViewAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
     }
-    private void setFoodItems(){
+    private void setFoodItems(ArrayList<FoodItemModel> todaysDiet){
 
           todaysDiet.add(new FoodItemModel("Milk","155","1 L"));
           todaysDiet.add(new FoodItemModel("Chicken","478","200g"));
@@ -67,4 +100,6 @@ public class HomeFragment extends Fragment {
           todaysDiet.add(new FoodItemModel("Banana","180","2"));
 
     }
+
+
 }

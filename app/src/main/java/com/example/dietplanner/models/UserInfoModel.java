@@ -12,6 +12,8 @@ public class UserInfoModel implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
+
+    private String contact;
     @ColumnInfo(name = "name")
     private String name;
     @ColumnInfo(name = "weightinkg")
@@ -32,8 +34,17 @@ public class UserInfoModel implements Serializable {
     private int goalWeight;
 
 
-    public UserInfoModel (int id, String name, double weightInKg, double heightInCM, int age, int activityLevel, String gender, int maintainCalories, int goal, int goalWeight) {
+    public String getContact () {
+        return contact;
+    }
+
+    public void setContact (String contact) {
+        this.contact = contact;
+    }
+
+    public UserInfoModel (int id, String contact, String name, double weightInKg, double heightInCM, int age, int activityLevel, String gender, int maintainCalories, int goal, int goalWeight) {
         this.id = id;
+        this.contact = contact;
         this.name = name;
         this.weightInKg = weightInKg;
         this.heightInCM = heightInCM;

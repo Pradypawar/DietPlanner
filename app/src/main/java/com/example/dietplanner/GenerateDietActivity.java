@@ -31,6 +31,7 @@ public class GenerateDietActivity extends AppCompatActivity {
             public void onClick (View view) {
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                 intent.putExtra("userInfo",user);
+                finish();
                 startActivity(intent);
             }
         });

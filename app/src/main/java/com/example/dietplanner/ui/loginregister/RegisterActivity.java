@@ -6,6 +6,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.renderscript.Sampler;
 import android.text.Editable;
@@ -31,6 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class RegisterActivity extends AppCompatActivity {
     private ActivityRegisterBinding binding;
+    private SharedPreferences sharedPreferences;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://dietplanner-b6460-default-rtdb.firebaseio.com/");
     //TODO Email validation ,warning text in et
     @Override
@@ -39,9 +41,17 @@ public class RegisterActivity extends AppCompatActivity {
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+
+        sharedPreferences = getSharedPreferences("user_info",MODE_PRIVATE);
+
         AppCompatTextView prefixView = binding.etRegisterContact.findViewById(com.google.android.material.R.id.textinput_prefix_text);
         prefixView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
         prefixView.setGravity(Gravity.CENTER_VERTICAL);
+
+
+
+
         binding.btnRegister.setOnClickListener(new View.OnClickListener() {
 
 
@@ -56,7 +66,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String registerFirstName = getString(binding.etRegisterFirstName.getEditText());
                 String registerLastName = getString(binding.etRegisterLastName.getEditText());
 
-                Log.d("REGISTER_",registerEmail.toString()  );
+                Log.d("REGISTER_",registerEmail.toString());
 
 
 
@@ -82,8 +92,17 @@ public class RegisterActivity extends AppCompatActivity {
                                 databaseReference.child("users").child(registerContact).child("email").setValue(registerEmail);
                                 databaseReference.child("users").child(registerContact).child("password").setValue(registerPassword);
                                 databaseReference.child("users").child(registerContact).child("firstname").setValue(registerFirstName);
-                                databaseReference.child("users").child(registerContact).child("lastname").setValue(registerFirstName);
+                                databaseReference.child("users").child(registerContact).child("lastname").setValue(registerLastName);
                                 databaseReference.child("users").child(registerContact).child("newuser").setValue(true);
+                                databaseReference.child("users").child(registerContact).child("detailfilled").setValue(false);
+
+
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString("contact",registerContact);
+                                editor.putString("firstname",registerFirstName);
+                                editor.putBoolean("detailfilled",false);
+                                editor.apply();
+
                                 finish();
                                 startActivity(new Intent(new Intent(RegisterActivity.this, UserInfoActivity.class)));
                             }

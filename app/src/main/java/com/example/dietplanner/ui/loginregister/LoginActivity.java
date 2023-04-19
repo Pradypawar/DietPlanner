@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatTextView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -36,6 +37,8 @@ public class LoginActivity extends AppCompatActivity {
     GoogleSignInOptions googleSignInOptions;
     GoogleSignInClient googleSignInClient;
 
+    private SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+        sharedPreferences = getSharedPreferences("user_info",MODE_PRIVATE);
 
         AppCompatTextView prefixView = binding.etLoginContact.findViewById(com.google.android.material.R.id.textinput_prefix_text);
         prefixView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
@@ -57,6 +61,14 @@ public class LoginActivity extends AppCompatActivity {
             finish();
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
         }
+
+
+        if(sharedPreferences.contains("contact")){
+            finish();
+            startActivity(new Intent(LoginActivity.this,UserInfoActivity.class));
+        }
+
+
         binding.btnGoogleSignin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View view) {
@@ -84,6 +96,16 @@ public class LoginActivity extends AppCompatActivity {
                                 String getPassword = snapshot.child(loginContact).child("password").getValue(String.class);
 
                                 if(getPassword.equals(loginPassword)){
+                                    String firstname = snapshot.child(loginContact).child("firstname").getValue(String.class);
+                                    Boolean detailfilled = snapshot.child(loginContact).child("detailfilled").getValue(Boolean.class);
+
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putString("contact",loginContact);
+                                    editor.putString("firstname",firstname);
+                                    editor.putBoolean("detailfilled", Boolean.TRUE.equals(detailfilled));
+                                    editor.apply();
+
+
                                     startActivity(new Intent(LoginActivity.this, UserInfoActivity.class));
                                 }else {
                                     Toast.makeText(LoginActivity.this, "Incorrect Password", Toast.LENGTH_SHORT).show();

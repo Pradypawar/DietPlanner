@@ -12,7 +12,7 @@ public class UserInfoModel implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
-
+    @ColumnInfo(name = "contact")
     private String contact;
     @ColumnInfo(name = "name")
     private String name;

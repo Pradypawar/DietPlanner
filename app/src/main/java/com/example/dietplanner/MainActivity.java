@@ -38,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        Intent intent = getIntent();
-        UserInfoModel user = (UserInfoModel) intent.getSerializableExtra("userInfo");
+//        Intent intent = getIntent();
+//        UserInfoModel user = (UserInfoModel) intent.getSerializableExtra("userInfo");
 //        Intent intent = getIntent();
 //        UserInfoModel user = (UserInfoModel) intent.getSerializableExtra("userInfo");
 //
@@ -47,4 +47,12 @@ public class MainActivity extends AppCompatActivity {
 //        Toast.makeText(this, user.getActivityLevel(), Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void onBackPressed () {
+        super.onBackPressed();
+        Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+        homeIntent.addCategory( Intent.CATEGORY_HOME );
+        homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(homeIntent);
+    }
 }

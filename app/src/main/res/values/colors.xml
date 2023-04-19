@@ -10,7 +10,7 @@
     <color name="gray">#808080</color>
     <color name="peach">#FF8787</color>
     <color name ="red">#FF3B30</color>
-    <color name="light_peach">#FFF1F1</color>
+    <color name="light_peach">#F6AEAE</color>
     <!--colors for profile-->
     <color name="profilePrimaryDark">#FF3B30</color>
     <color name="profileAccentColor">#F44336</color>

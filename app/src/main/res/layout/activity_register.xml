@@ -205,7 +205,7 @@
         android:fontFamily="@font/montserrat_regular"
         app:passwordToggleEnabled="true"
         app:passwordToggleTint="@color/peach"
-        android:hint="Password"
+        android:hint="Create password"
 
         app:boxCornerRadiusBottomEnd="30dp"
         app:boxCornerRadiusBottomStart="30dp"

@@ -1,12 +1,15 @@
 package com.example.dietplanner.ui.home;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -31,6 +34,7 @@ import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
+    SharedPreferences sharedPreferences,userDetail;
     private FragmentHomeBinding binding;
 
     GoogleSignInOptions googleSignInOptions;
@@ -44,15 +48,33 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        userDetail =getActivity().getSharedPreferences("userDetail",Context.MODE_PRIVATE);
+
+
+
+        sharedPreferences = getActivity().getSharedPreferences("user_info", Context.MODE_PRIVATE);
         googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         googleSignInClient = GoogleSignIn.getClient(requireContext(),googleSignInOptions);
+
+        binding.tvdailyCalories.setText(userDetail.getString("calories","2151"));
+
 
         setRecyclerView(root);
 
         binding.btnHomeFragmentSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View view) {
-                signout();
+
+                if(sharedPreferences.contains("contact")){
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.clear();
+                editor.apply();
+                    startActivity(new Intent((Activity)getActivity(), LoginActivity.class));
+                    
+                }else{
+                    signout();
+                }
+                Toast.makeText(getActivity(), "Logout Successful", Toast.LENGTH_SHORT).show();
             }
         });
 

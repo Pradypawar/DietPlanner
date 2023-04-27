@@ -67,6 +67,10 @@ public class LoginActivity extends AppCompatActivity {
             finish();
             startActivity(new Intent(LoginActivity.this,UserInfoActivity.class));
         }
+        if(sharedPreferences.contains("contact")){
+            finish();
+            startActivity(new Intent(LoginActivity.this,MainActivity.class));
+        }
 
 
         binding.btnGoogleSignin.setOnClickListener(new View.OnClickListener() {

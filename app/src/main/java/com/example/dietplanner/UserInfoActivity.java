@@ -53,7 +53,7 @@ public class UserInfoActivity extends AppCompatActivity {
         sharedPreferences =getSharedPreferences("user_info",MODE_PRIVATE);
 
         if(sharedPreferences.getBoolean("detailfilled",true)){
-           startActivity(new Intent(UserInfoActivity.this,MainActivity.class));
+           startActivity(new Intent(UserInfoActivity.this,GenerateDietActivity.class));
         }
 
         binding.include.imageBtnCustomToolbar.setVisibility(View.INVISIBLE);

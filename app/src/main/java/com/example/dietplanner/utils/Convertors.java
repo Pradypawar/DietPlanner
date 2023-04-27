@@ -47,6 +47,27 @@ public class Convertors {
           return 30.48*foot;
      }
 
+     public static String requiredProtein(String calories){
+          int calorie = Integer.parseInt(calories);
+          double m = calorie * 0.3;
+          double protein = Math.floor(m/4);
+          return String.valueOf(protein);
+
+     }
+     public static String requiredCarbs(String calories){
+          int calorie = Integer.parseInt(calories);
+          double m = calorie * 0.4;
+          double carbs = Math.floor(m/4);
+          return String.valueOf(carbs);
+
+     }
+     public static String requiredFats(String calories){
+          int calorie = Integer.parseInt(calories);
+          double m = calorie * 0.3;
+          double fats = Math.floor(m/9);
+          return String.valueOf(fats);
+     }
+
 //     public static Integer caloriesToGain(){
 //
 //     }

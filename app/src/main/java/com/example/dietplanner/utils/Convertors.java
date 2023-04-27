@@ -68,6 +68,18 @@ public class Convertors {
           return String.valueOf(fats);
      }
 
+
+     public static String calorieAccToGoal(String calories,String goal){
+
+          int calorie = Integer.parseInt(calories);
+          if(goal.equals("Gain")){
+               calorie+=500;
+          }else {
+               calorie-=500;
+          }
+          return String.valueOf(calorie);
+     }
+
 //     public static Integer caloriesToGain(){
 //
 //     }

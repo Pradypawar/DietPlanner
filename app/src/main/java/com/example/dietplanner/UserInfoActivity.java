@@ -184,6 +184,7 @@ public class UserInfoActivity extends AppCompatActivity {
         editor.putString("gender",""+ gender);
         editor.putString("calories",Convertors.caloriesToMaintain(user).toString());
         editor.putString("goal",weightGoal);
+
         editor.commit();
     }
 

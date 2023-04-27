@@ -24,6 +24,7 @@ import com.example.dietplanner.databinding.FragmentHomeBinding;
 import com.example.dietplanner.models.FoodItemModel;
 import com.example.dietplanner.models.UserInfoModel;
 import com.example.dietplanner.ui.loginregister.LoginActivity;
+import com.example.dietplanner.utils.Convertors;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -34,6 +35,8 @@ import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
+
+    String goalCalories;
     SharedPreferences sharedPreferences,userDetail;
     private FragmentHomeBinding binding;
 
@@ -56,7 +59,9 @@ public class HomeFragment extends Fragment {
         googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         googleSignInClient = GoogleSignIn.getClient(requireContext(),googleSignInOptions);
 
-        binding.tvdailyCalories.setText(userDetail.getString("calories","2151"));
+        goalCalories = Convertors.calorieAccToGoal(userDetail.getString("calories","2151"),userDetail.getString("goal","Gain"));
+
+    binding.tvdailyCalories.setText(goalCalories);
 
 
         setRecyclerView(root);

@@ -26,24 +26,26 @@ public class GenerateDietActivity extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences("user_info",MODE_PRIVATE);
         userDetail = getSharedPreferences("userDetail",MODE_PRIVATE);
+
         calories = userDetail.getString("calories","");
+        String goalCalories= Convertors.calorieAccToGoal(calories,userDetail.getString("goal","Gain"));
 
         binding.tvName.setText(sharedPreferences.getString("firstname",""));
-        binding.generateCalories.setText(calories);
-        carbs = Convertors.requiredCarbs(calories);
+        binding.generateCalories.setText(goalCalories);
+        carbs = Convertors.requiredCarbs(goalCalories);
         binding.tvCarbs.setText(carbs);
 
-        protein =Convertors.requiredProtein(calories);
+        protein =Convertors.requiredProtein(goalCalories);
         binding.tvProtein.setText(protein);
 
-        fats = Convertors.requiredFats(calories);
+        fats = Convertors.requiredFats(goalCalories);
         binding.tvFats.setText(fats);
 
 
 //        Intent intent = getIntent();
 //        UserInfoModel user = (UserInfoModel)intent.getSerializableExtra("userInfo");
 
-        binding.generateCalories.setText(calories);
+        binding.generateCalories.setText(goalCalories);
 
         binding.buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
